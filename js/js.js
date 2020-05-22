@@ -5,6 +5,8 @@ const setToken = () => {
     console.log(givenToken);
 }
 
+const sendButton = document.getElementById('button');
+
 const sendHttpRequest = (method, url, data) => {
     return fetch(url, {
         method: method,
@@ -25,3 +27,15 @@ const sendHttpRequest = (method, url, data) => {
         return response.json();
     });
 };
+
+const helloToTwitter = () => {
+    sendHttpRequest('POST', 'https://api.twitter.com/1.1/statuses/update.json?status=hello', json)
+        .then(responseData => {
+            console.log(responseData)
+        })
+        .catch(err => {
+            console.log(err, err.data);
+        });
+};
+
+sendButton.addEventListener('click', helloToTwitter);
